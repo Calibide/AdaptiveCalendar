@@ -6,9 +6,9 @@ import StarRating from 'react-native-star-rating'
 class Events extends Component {
     render() {
         return (
-            <View style={{ width: this.props.width/2 - 30, height: this.props.width/2 - 30, borderWidth: .5, borderColor: '#dddddd' }}>
-                <View style={{ flex: 1 }}>
-                    <Image style={{ flex: 1, width: null, height: null, resizeMode: 'cover' }} source={require('../../assets/Conference.jpg')} />
+            <View style={{ width: this.props.width/2 - 30, height: this.props.width/2 - 30, borderWidth: .5, borderColor: '#dddddd', marginBottom : 10, borderRadius : 13}}>
+                <View style={{ flex: 1}}>
+                    <Image style={{ flex: 1, width: null, height: null, resizeMode: 'cover', borderTopLeftRadius : 13, borderTopRightRadius : 13}} source={require('../../assets/Conference.jpg')} />
                 </View>
                 <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'space-evenly', paddingLeft: 10 }}>
                     <Text style = {{fontSize : 12, color : '#B80F0A'}}>
@@ -18,7 +18,7 @@ class Events extends Component {
                         {this.props.description}
                     </Text>
                     <Text style={{ fontSize: 12 }}>
-                        {this.props.price}
+                        {this.props.date}
                     </Text>
                     <StarRating 
                     disabled = {true}

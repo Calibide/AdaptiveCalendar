@@ -1,4 +1,3 @@
-//import liraries
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, TextInput, Platform, StatusBar, ScrollView, Image, Dimensions} from 'react-native';
 import Category from '../Components/Discovery/Category'
@@ -28,7 +27,8 @@ class Discovery extends Component {
                                         shadowColor : 'black',
                                         shadowOpacity : .2,
                                         elevation : 1,
-                                        marginTop : Platform.OS == 'android' ? '30' : null
+                                        marginTop : Platform.OS == 'android' ? '30' : null,
+                                        borderRadius : 13
                                         }}>
                             <TextInput 
                             underlineColorAndroid = "transparent"
@@ -83,7 +83,8 @@ class Discovery extends Component {
                                                 resizeMode : 'cover',
                                                 borderRadius : 5,
                                                 borderWidth : 1,
-                                                borderColor : '#dddddd',}}
+                                                borderColor : '#dddddd',
+                                                borderRadius : 13}}
                                         />
                                     </View>
                                 </View>
@@ -93,7 +94,7 @@ class Discovery extends Component {
                                     Events in your city!
                                 </Text>
                                 <View style = {{marginTop : 20, paddingHorizontal : 20, flexDirection : 'row', flexWrap : 'wrap', justifyContent : 'space-between'}}>
-                                    <Events width = {width} name = "Example" price = "80 SAR" description = "Some description" rating = {4.5}/>
+                                    <Events width = {width} name = "Example" date = "02/18/2020" description = "Some description" rating = {4.5}/>
                                     <Events width = {width}/>
                                     <Events width = {width}/>
                                 </View>
@@ -106,5 +107,4 @@ class Discovery extends Component {
     }
 }
 
-//make this component available to the app
 export default Discovery;
