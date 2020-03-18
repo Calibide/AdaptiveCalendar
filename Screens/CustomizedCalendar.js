@@ -22,7 +22,8 @@ class CustomizedCalendar extends Component {
         this.state = {
             noteArray: [],
             note: '',
-            _markedDates: this.initialState
+            _markedDates: this.initialState,
+            selectedDate: _today,
         }
     }
 
@@ -41,6 +42,7 @@ class CustomizedCalendar extends Component {
         
         // Triggers component to render again, picking up the new state
         this.setState({ _markedDates: updatedMarkedDates });
+        this.setState({selectedDate : _selectedDay})
     }
 
     async componentDidMount() {
@@ -65,7 +67,15 @@ class CustomizedCalendar extends Component {
         })
     }
 
+    testing (){
+        noteArray.filter(function(item){
+            if (item.includes(this.state.selectedDate))
+                return item
+        })
+    }
+
     cloneNotes() {
+        
         return [...this.state.noteArray]
     }
 
@@ -74,7 +84,7 @@ class CustomizedCalendar extends Component {
             return;
         try {
             const noteArray = this.cloneNotes();
-            noteArray.push(this.state.note);
+            noteArray.push(this.state.note+" indicator"+this.state.selectedDate);
             await this.updateAsyncStorage(noteArray);
 
             this.setState({
@@ -102,13 +112,16 @@ class CustomizedCalendar extends Component {
 
     renderNotes() {
         return this.state.noteArray.map((note, i) => {
+            const ind = note.indexOf("indicator")
+            if(note.includes(this.state.selectedDate))
             return (
+                
                 <TouchableOpacity
                     key={i} style={styles.note}
                     onPress={() => this.removeNotes(i)}
                 >
                     <Text style={styles.noteText}>
-                        {note}
+                        {note.substring(0,ind)}
                     </Text>
                 </TouchableOpacity>
             )
@@ -132,9 +145,10 @@ class CustomizedCalendar extends Component {
                         maxDate={_maxDate}
                         onDayPress={this.onDaySelect}
                         markedDates={this.state._markedDates}
+
                     />
                 </View>
-                    <Header title={'Tasks for this day'} />
+                    <Header title={'Tasks for ' + this.state.selectedDate} />
 
                     <ScrollView style={styles.scrollViewContainer}>
                         {this.renderNotes()}
